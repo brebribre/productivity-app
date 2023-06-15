@@ -106,9 +106,9 @@ export default function Timer(){
         </div>
 
         <div className = "w-80 grid grid-cols-3 lg:w-96 h-28 items-center bg-slate-200 bg-opacity-50 border-0 rounded-xl sm:w-80">
-            <div className ="text-slate-100 text-6xl font-bold text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 text-6xl font-light text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
             <div className ="text-slate-100 text-6xl font-bold text-center">:</div>
-            <div className ="text-slate-100 text-6xl font-bold text-left">{oneDigit(seconds)? '0'+seconds : seconds}</div>
+            <div className ="text-slate-100 text-6xl font-light text-left">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
         <Controls 
