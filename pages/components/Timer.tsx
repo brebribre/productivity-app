@@ -105,10 +105,10 @@ export default function Timer(){
             </div>
         </div>
 
-        <div className = "w-96 grid grid-cols-3 h-28 my-4 md:my-12 items-center text-8xl md:text-9xl ">
-            <div className ="text-slate-100 font-bold text-right font-orbitron">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
-            <div className ="text-slate-100 font-bold text-center">:</div>
-            <div className ="text-slate-100 font-bold text-left font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
+        <div className = "w-80 md:w-96 grid grid-cols-3 h-28 my-4 md:my-12 text-center mx-auto text-8xl md:text-9xl ">
+            <div className ="text-slate-100 font-bold  font-orbitron">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 font-bold ">:</div>
+            <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
         <Controls 
