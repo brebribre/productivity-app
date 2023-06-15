@@ -87,18 +87,18 @@ export default function Timer(){
     
     return (
     <div>
-        <div className = "grid grid-cols-3 gap-3 text-center mb-4 text-2xl md:text-3xl">
-            <div className = {`border-2 py-2 px-5 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+        <div className = "grid grid-cols-3 gap-3 text-center mb-4 text-1xl md:text-3xl">
+            <div className = {`border-2 py-2 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('short')}}
             >
                 short
             </div>
-            <div className = {`border-2 py-2 px-5 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='medium' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+            <div className = {`border-2 py-2 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='medium' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('medium')}}
             >
                 medium 
             </div>
-            <div className = {`border-2 py-2 px-5 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='long' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+            <div className = {`border-2 py-2 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='long' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('long')}}
             >
                 long
