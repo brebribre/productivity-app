@@ -6,7 +6,7 @@ export default function Controls(props:any){
  
     return (
 
-            <div className = "w-80 mx-auto mt-4 py-3 bg-white grid grid-cols-2 gap-4 border-4 rounded-xl text-slate-500 font-bold">
+            <div className = "w-80 mx-auto mt-4 py-3 bg-white grid grid-cols-2 gap-4 border-4 rounded-3xl text-slate-500 font-bold">
                 <div 
                     className="my-auto mx-auto transform transition duration-200 hover:opacity-80 hover:scale-110" 
                     onClick = {props.onPlay}
