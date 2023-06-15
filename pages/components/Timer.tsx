@@ -8,7 +8,7 @@ export default function Timer(){
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [mode, setMode] = useState("short");
-    
+
 
     const oneDigit = (num:Number) => {
         return num.toString().length === 1
@@ -87,7 +87,7 @@ export default function Timer(){
     
     return (
     <div>
-        <div className = "grid grid-cols-3 gap-4 text-center mb-6">
+        <div className = "grid grid-cols-3 gap-4 text-center mb-4">
             <div className = {`border-2 py-1 rounded-xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('short')}}
             >
@@ -105,7 +105,7 @@ export default function Timer(){
             </div>
         </div>
 
-        <div className = "w-80 h-24 bg-slate-200 bg-opacity-50 border-0 rounded-xl flex justify-center items-center">
+        <div className = "w-96 h-28 bg-slate-200 bg-opacity-50 border-0 rounded-xl flex justify-center items-center">
             <div className ="text-5xl font-bold tracking-wider">{oneDigit(minutes)? '0'+ minutes : minutes} : {oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
