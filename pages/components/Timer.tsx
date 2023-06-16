@@ -8,7 +8,7 @@ export default function Timer(){
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [mode, setMode] = useState("short");
-
+    
 
     const oneDigit = (num:Number) => {
         return num.toString().length === 1
@@ -55,8 +55,6 @@ export default function Timer(){
             setSeconds(0);
             setIsActive(false);
         }
-
-        console.log(mode)
     }
 
 
