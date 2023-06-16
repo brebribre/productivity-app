@@ -86,8 +86,8 @@ export default function Timer(){
 
     
     return (
-    <div className = "">
-        <div className = "px-4 w-96 mx-auto grid grid-cols-3 gap-4 text-center justify-center mb-4 text-1xl md:text-2xl">
+    <div>
+        <div className = "px-4 w-80 gap-2 mx-auto grid grid-cols-3 text-center justify-center mb-4 text-1xl md:text-2xl md:w-96 md:gap-4">
             <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('short')}}
             >
@@ -105,9 +105,9 @@ export default function Timer(){
             </div>
         </div>
 
-        <div className = "w-80 md:w-96 grid grid-cols-3 h-28 my-4 md:my-12 text-center mx-auto text-8xl md:text-9xl ">
-            <div className ="text-slate-100 font-bold  font-orbitron">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
-            <div className ="text-slate-100 font-bold ">:</div>
+        <div className = "w-48 justify-center mx-auto text-6xl grid grid-cols-3 md:my-12 md:text-9xl md:w-96 ">
+            <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 font-bold text-center">:</div>
             <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
