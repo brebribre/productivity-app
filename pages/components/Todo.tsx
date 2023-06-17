@@ -14,7 +14,7 @@ export default function Todo(props:any){
         <div className = "flex border-b-2 mt-6">
             <input 
                 type="checkbox" 
-                className="flex-auto m-2 rounded-xl" 
+                className="flex-auto m-2 rounded-xl transform transition duration-200 hover:opacity-80 hover:scale-125" 
                 onClick = {onComplete}
                 checked = {isChecked}
             />
@@ -26,7 +26,7 @@ export default function Todo(props:any){
             </p>
 
             <button 
-                className = "flex-auto py-2 font-bold"
+                className = "flex-auto py-2 font-bold transform transition duration-200 hover:opacity-80 hover:scale-150"
                 onClick={() => {
                     props.delFunc(props.id)
                 }}
