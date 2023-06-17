@@ -15,7 +15,7 @@ export default function Input(props:any){
 
             <button className = "flex-auto py-2" onClick = {()=>{
                 setTodo("")
-                props.onAdd(todo)
+                props.addTodos(todo)
             } 
             }
             >

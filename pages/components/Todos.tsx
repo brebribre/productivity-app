@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo'
 import Input from './Input';
-import { useState } from 'react';
+import { useEffect, useState } from "react"
 
 interface Todos {
     id: number;
@@ -12,28 +12,77 @@ interface Todos {
 export default function Todos(){
     let [todos, setTodos] = useState<Todos[]>([]);
 
-    const addTodos = (item:string) => {
+
+    useEffect(() => {
+    
+        let value;
+        // Get the value from local storage if it exists
+        value = localStorage.getItem("todos") || "err"
+        if(value !== "err"){
+            setTodos(JSON.parse(value));
+           
+        }else{
+            setTodos([])
+        }
+      }, [])
+
+    const addToLocalStorage =  (todos:Todos[]) => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+      
+    }
+
+    const appendToLocalStorage =  (todos:Todos[]) => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+      
+    }
+
+    const addTodos =  (item:string) => {
         if(item !== ''){
             const newItem = {
                 id: Date.now(),
                 text: item,
                 completed: false
             }
-  
             setTodos([...todos, newItem]);
+            //store todos locally
            
+            let tmp = todos;
+            tmp = [...todos, newItem]
+
+            appendToLocalStorage(tmp);
+            console.log(tmp)
         }   
     }
 
-    const deleteTodo = (id:number) => {
-        setTodos(todos => todos.filter(todo => id != todo.id))
+    const checkTodo =  (id:number) => {
+        let tmp = todos.map((item) => {
+            if(item.id === id){
+                item.completed = !item.completed
+                
+            }
+            return item;
+        });
+        console.log(tmp)
+        setTodos(tmp);
+        addToLocalStorage(tmp);
+        
+
+    }
+
+    const deleteTodo =  (id:number) => {
+        let tmp = todos.filter((todo) => todo.id != id);
+        setTodos(tmp);
+        
+        addToLocalStorage(tmp);
+        console.log(tmp)
     }
 
    
+
     return (
-        <div className = "w-64">
+        <div className = "w-80">
             <Input
-                onAdd = {addTodos}
+                addTodos = {addTodos}
             />
             <div className = "h-64 overflow-y-scroll no-scrollbar">
                 {todos.map((obj, index) => {
@@ -44,15 +93,13 @@ export default function Todos(){
                     id = {obj.id}
                     text = {obj.text}
                     delFunc = {deleteTodo}
+                    checkFunc = {checkTodo}
+                    initialCheck = {obj.completed}
                 />
                 )
             }  
             )}
-            </div>
-            
-
-
-      
+            </div> 
         </div>
     )
 }
