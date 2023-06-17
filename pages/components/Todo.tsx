@@ -14,7 +14,11 @@ export default function Todo(props:any){
                 onClick = {() => setIsChecked(!isChecked)}
             />
 
-            <p className="flex-auto w-48 py-2 px-2 break-words">{props.text}</p>
+            <p 
+                className = {`flex-auto w-48 py-2 px-2 break-words ${isChecked ? "line-through" : ""}`} 
+            >
+                {props.text}
+            </p>
 
             <button 
                 className = "flex-auto py-2"
