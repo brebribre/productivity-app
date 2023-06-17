@@ -3,6 +3,7 @@ import Timer from './Timer'
 import Controls from './Controls'
 import { useState, useEffect } from 'react';
 import Nav from './Nav'
+import Todos from './Todos'
 
 function App(){
     const [bg, setBg] = useState("sakura");
@@ -26,6 +27,8 @@ function App(){
       <div className = "bg-black h-screen w-full bg-opacity-20 flex flex-col items-center justify-center">
         <Nav setBg = {changeBg}/>
         <Timer />
+       
+        <Todos /> 
       </div>
     </div>
     )
