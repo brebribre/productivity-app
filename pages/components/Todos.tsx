@@ -12,7 +12,7 @@ interface Todos {
 export default function Todos(){
     let [todos, setTodos] = useState<Todos[]>([]);
 
-
+    
     useEffect(() => {
     
         let value;
@@ -50,23 +50,18 @@ export default function Todos(){
             tmp = [...todos, newItem]
 
             appendToLocalStorage(tmp);
-            console.log(tmp)
         }   
     }
 
     const checkTodo =  (id:number) => {
         let tmp = todos.map((item) => {
             if(item.id === id){
-                item.completed = !item.completed
-                
+                item.completed = !item.completed  
             }
             return item;
         });
-        console.log(tmp)
         setTodos(tmp);
         addToLocalStorage(tmp);
-        
-
     }
 
     const deleteTodo =  (id:number) => {

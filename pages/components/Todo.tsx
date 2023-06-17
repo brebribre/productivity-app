@@ -26,7 +26,7 @@ export default function Todo(props:any){
             </p>
 
             <button 
-                className = "flex-auto py-2"
+                className = "flex-auto py-2 font-bold"
                 onClick={() => {
                     props.delFunc(props.id)
                 }}

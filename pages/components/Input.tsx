@@ -13,13 +13,13 @@ export default function Input(props:any){
             placeholder = "Your todo here" 
             className = "flex-auto w-60 pl-2 tracking-wide py-2 bg-transparent outline-0 "/>
 
-            <button className = "flex-auto py-2" onClick = {()=>{
+            <button className = "flex-auto py-2 font-bold" onClick = {()=>{
                 setTodo("")
                 props.addTodos(todo)
             } 
             }
             >
-                Add
+                +
             </button>
         </div>
     )
