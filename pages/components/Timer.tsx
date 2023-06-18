@@ -7,7 +7,7 @@ export default function Timer(){
     const [minutes, setMinutes] = useState(15);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
-    const [mode, setMode] = useState("short");
+    const [mode, setMode] = useState("podomoro");
     
 
     const oneDigit = (num:Number) => {
@@ -15,6 +15,7 @@ export default function Timer(){
     }
 
     const resetTimer = () => {
+        console.log(mode)
         if(mode === 'podomoro'){
             setMinutes(25);
             setSeconds(0);
