@@ -20,7 +20,7 @@ export default function Todo(props:any){
             />
 
             <p 
-                className = {`flex-auto w-48 py-2 px-2 break-words ${isChecked ? "line-through" : ""}`} 
+                className = {`flex-auto w-48 py-3 px-2 text-md break-words ${isChecked ? "line-through" : ""}`} 
             >
                 {props.text}
             </p>
