@@ -7,14 +7,13 @@ interface Todos {
     id: number;
     text: string;
     completed: boolean;
-  }
+}
 
 export default function Todos(){
     let [todos, setTodos] = useState<Todos[]>([]);
 
     
     useEffect(() => {
-    
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("todos") || "err"

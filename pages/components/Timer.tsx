@@ -4,11 +4,41 @@ import Controls from './Controls'
 
 
 export default function Timer(){
-    const [minutes, setMinutes] = useState(15);
+    const [minutes, setMinutes] = useState(25);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
     const [mode, setMode] = useState("podomoro");
     
+    const [pod, setPod] = useState(25);
+    const [short, setShort] = useState(15);
+    const [long, setLong] = useState(10);
+    
+    useEffect(() => {
+        let value;
+        // Get the value from local storage if it exists
+        value = localStorage.getItem("settings") || "err"
+        if(value !== "err"){
+            let podomoro = Number(JSON.parse(value).podomoro);
+            let short = Number(JSON.parse(value).short);
+            let long = Number(JSON.parse(value).long);
+            console.log(podomoro)
+
+            setMinutes(podomoro)
+            setPod(podomoro)
+            setShort(short)
+            setLong(long)
+        }else{
+            console.log("empty")
+        }
+      }, [])
+
+    const playFinishSound = () => {
+        let audio = new Audio("/audios/finish.mp3");
+        if(typeof Audio !== "undefined"){
+            audio.play()
+        }
+    }
+
 
     const oneDigit = (num:Number) => {
         return num.toString().length === 1
@@ -17,15 +47,15 @@ export default function Timer(){
     const resetTimer = () => {
         console.log(mode)
         if(mode === 'podomoro'){
-            setMinutes(25);
+            setMinutes(pod);
             setSeconds(0);
             setIsActive(false);
         }else if(mode === 'short break'){
-            setMinutes(5);
+            setMinutes(short);
             setSeconds(0);
             setIsActive(false);
         }else if(mode === 'long break'){
-            setMinutes(10);
+            setMinutes(long);
             setSeconds(0);
             setIsActive(false);
         }
@@ -68,6 +98,7 @@ export default function Timer(){
           }, 1000);
 
           if(allZero()){
+            playFinishSound()
             setIsActive(false);
           }
 

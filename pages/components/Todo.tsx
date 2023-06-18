@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 export default function Todo(props:any){
     const [isChecked, setIsChecked] = useState(props.initialCheck);
+    
     let audio = new Audio("/audios/success.mp3")
-
     const start = () => {
         audio.play()
     }

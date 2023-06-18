@@ -6,13 +6,42 @@ import Nav from './Nav'
 import Todos from './Todos'
 import Popup from './Popup'
 import Head from 'next/head'
+import Title from './Title'
+import Image from 'next/image'
 
 function App(){
-  
+    const [isOpen, setIsOpen] = useState(false);
+
     const [bg, setBg] = useState("sakura");
     const [url, setUrl] = useState("bg-[url('/images/bg1.jpeg')]")
 
+    const getUrl = (bg:string) => {
+      if(bg === "sakura"){
+        return "bg-[url('/images/bg1.jpeg')]"
+      }else if(bg === "sea"){
+        return "bg-[url('/images/sea.jpg')]"
+      }else if(bg === "forest"){
+        return "bg-[url('/images/forest.jpg')]"
+      }else{
+        return "bg-[url('/images/bg1.jpeg')]"
+      }
+    }
+
+    useEffect(() => {
+      let value;
+      // Get the value from local storage if it exists
+      value = localStorage.getItem("settings") || "err"
+      if(value !== "err"){
+          let theme = JSON.parse(value).theme;
+          setBg(theme);  
+          setUrl(getUrl(theme))
+      }else{
+        console.log("empty")
+      }
+    }, [])
+
     const changeBg = (bg:string) => {
+      
       if(bg === "sakura"){
         setUrl("bg-[url('/images/bg1.jpeg')]")
       }else if(bg === "sea"){
@@ -23,6 +52,11 @@ function App(){
       console.log(bg);
       setBg(bg);
     }
+
+    const toggleSettings = (visible:boolean) => {
+      console.log("clicked!")
+      setIsOpen(visible);
+    }
     
     return (
     <div className={'bg-wrapper bg-no-repeat bg-center bg-fixed bg-cover ' + url}>
@@ -31,12 +65,13 @@ function App(){
         <link rel="shortcut icon" href="restart.svg" />
       </Head>
       <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center">
-        <div className = "absolute text-center top-5 sm:left-5 sm:text-left ">
-          <p className="text-3xl tracking-wide font-bold text-pink-800 italic">doMore.io</p>
-          <p className ="text-slate-300 font-semibold text-sm">by Bryan Alvin</p>
-        </div>
+        <Title/>
         <Timer />
         <Todos /> 
+        <div className = "absolute top-5 right-5 " onClick = {() => toggleSettings(true)}>
+          <Image src={'settings.svg'} className="hover:rotate-45 hover:scale-110 transform transition duration-300 md:w-10" alt="reset-button" width={30} height={30}/>
+        </div>
+        <Popup isOpen = {isOpen} setIsOpen = {toggleSettings } setBg = {changeBg}/>
       </div>
     </div>
     )
