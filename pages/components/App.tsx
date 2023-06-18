@@ -2,7 +2,6 @@ import React from 'react';
 import Timer from './Timer'
 import Controls from './Controls'
 import { useState, useEffect } from 'react';
-import Nav from './Nav'
 import Todos from './Todos'
 import Popup from './Popup'
 import Head from 'next/head'
@@ -11,7 +10,6 @@ import Image from 'next/image'
 
 function App(){
     const [isOpen, setIsOpen] = useState(false);
-
     const [bg, setBg] = useState("sakura");
     const [url, setUrl] = useState("bg-[url('/images/bg1.jpeg')]")
 
@@ -27,17 +25,23 @@ function App(){
       }
     }
 
-    useEffect(() => {
+    const getFromLocalStorage = () => {
       let value;
       // Get the value from local storage if it exists
       value = localStorage.getItem("settings") || "err"
       if(value !== "err"){
+          console.log(value)
           let theme = JSON.parse(value).theme;
           setBg(theme);  
           setUrl(getUrl(theme))
+          
       }else{
         console.log("empty")
       }
+    }
+
+    useEffect(() => {
+      getFromLocalStorage();
     }, [])
 
     const changeBg = (bg:string) => {
@@ -49,12 +53,13 @@ function App(){
       }else if(bg === "forest"){
         setUrl("bg-[url('/images/forest.jpg')]")
       }
-      console.log(bg);
+
       setBg(bg);
     }
 
+    
+
     const toggleSettings = (visible:boolean) => {
-      console.log("clicked!")
       setIsOpen(visible);
     }
     
@@ -71,7 +76,11 @@ function App(){
         <div className = "absolute top-5 right-5 " onClick = {() => toggleSettings(true)}>
           <Image src={'settings.svg'} className="hover:rotate-45 hover:scale-110 transform transition duration-300 md:w-10" alt="reset-button" width={30} height={30}/>
         </div>
-        <Popup isOpen = {isOpen} setIsOpen = {toggleSettings } setBg = {changeBg}/>
+        <Popup 
+          isOpen = {isOpen} 
+          setIsOpen = {toggleSettings} 
+          setBg = {changeBg} 
+          />
       </div>
     </div>
     )

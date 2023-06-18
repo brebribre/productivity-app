@@ -12,21 +12,21 @@ export default function Timer(){
     const [pod, setPod] = useState(25);
     const [short, setShort] = useState(15);
     const [long, setLong] = useState(10);
+
     
     useEffect(() => {
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
         if(value !== "err"){
-            let podomoro = Number(JSON.parse(value).podomoro);
-            let short = Number(JSON.parse(value).short);
-            let long = Number(JSON.parse(value).long);
-            console.log(podomoro)
-
-            setMinutes(podomoro)
-            setPod(podomoro)
-            setShort(short)
-            setLong(long)
+            console.log(value)
+            let podomoroDef = Number(JSON.parse(value).podomoro);
+            let shortDef = Number(JSON.parse(value).short);
+            let longDef = Number(JSON.parse(value).long);
+            setMinutes(podomoroDef)
+            setPod(podomoroDef)
+            setShort(shortDef)
+            setLong(longDef)
         }else{
             console.log("empty")
         }
@@ -66,17 +66,16 @@ export default function Timer(){
 
     const changeMode = (mode:string) => {
         setMode(mode);
-
         if(mode === 'podomoro'){
-            setMinutes(25);
+            setMinutes(pod);
             setSeconds(0);
             setIsActive(false);
         }else if(mode === 'short break'){
-            setMinutes(5);
+            setMinutes(short);
             setSeconds(0);
             setIsActive(false);
         }else if(mode === 'long break'){
-            setMinutes(10);
+            setMinutes(long);
             setSeconds(0);
             setIsActive(false);
         }
@@ -129,7 +128,7 @@ export default function Timer(){
         </div>
 
         <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-3 md:my-4 md:text-9xl md:w-96 ">
-            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(pod)? '0'+ minutes : minutes}</div>
             <div className ="text-slate-100 font-bold text-center">:</div>
             <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
