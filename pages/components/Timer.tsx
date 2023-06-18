@@ -15,16 +15,16 @@ export default function Timer(){
     }
 
     const resetTimer = () => {
-        if(mode === 'short'){
-            setMinutes(15);
-            setSeconds(0);
-            setIsActive(false);
-        }else if(mode === 'medium'){
+        if(mode === 'podomoro'){
             setMinutes(25);
             setSeconds(0);
             setIsActive(false);
-        }else if(mode === 'long'){
-            setMinutes(50);
+        }else if(mode === 'short break'){
+            setMinutes(5);
+            setSeconds(0);
+            setIsActive(false);
+        }else if(mode === 'long break'){
+            setMinutes(10);
             setSeconds(0);
             setIsActive(false);
         }
@@ -42,16 +42,16 @@ export default function Timer(){
     const changeMode = (mode:string) => {
         setMode(mode);
 
-        if(mode === 'short'){
-            setMinutes(15);
-            setSeconds(0);
-            setIsActive(false);
-        }else if(mode === 'medium'){
+        if(mode === 'podomoro'){
             setMinutes(25);
             setSeconds(0);
             setIsActive(false);
-        }else if(mode === 'long'){
-            setMinutes(50);
+        }else if(mode === 'short break'){
+            setMinutes(5);
+            setSeconds(0);
+            setIsActive(false);
+        }else if(mode === 'long break'){
+            setMinutes(10);
             setSeconds(0);
             setIsActive(false);
         }
@@ -85,26 +85,26 @@ export default function Timer(){
     
     return (
     <div>
-        <div className = "px-4 w-80 gap-2 mx-auto grid grid-cols-3 text-center justify-center mb-4 text-1xl md:text-2xl md:w-96 md:gap-4">
-            <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
-                onClick = {() => {changeMode('short')}}
+        <div className = "w-80 mb-8 gap-2 mx-auto grid grid-cols-3 text-center justify-center md:mb-4 text-sm md:text-md md:w-96 md:gap-4">
+            <div className = {`border-2 px-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+                onClick = {() => {changeMode('podomoro')}}
             >
-                short
+                podomoro
             </div>
-            <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='medium' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
-                onClick = {() => {changeMode('medium')}}
+            <div className = {`border-2 py-2 px-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='medium' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+                onClick = {() => {changeMode('short break')}}
             >
-                med 
+                short break 
             </div>
             <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='long' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
-                onClick = {() => {changeMode('long')}}
+                onClick = {() => {changeMode('long break')}}
             >
-                long
+                long break
             </div>
         </div>
 
-        <div className = "w-48 justify-center mx-auto text-6xl grid grid-cols-3 md:my-12 md:text-9xl md:w-96 ">
-            <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+        <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-3 md:my-4 md:text-8xl md:w-80 ">
+            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
             <div className ="text-slate-100 font-bold text-center">:</div>
             <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>

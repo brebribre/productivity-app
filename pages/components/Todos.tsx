@@ -75,7 +75,7 @@ export default function Todos(){
    
 
     return (
-        <div className = "w-80">
+        <div className = "w-64 md:w-80">
             <Input
                 addTodos = {addTodos}
             />
