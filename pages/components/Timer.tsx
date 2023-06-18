@@ -86,17 +86,17 @@ export default function Timer(){
     return (
     <div>
         <div className = "w-80 mb-8 gap-2 mx-auto grid grid-cols-3 text-center justify-center md:mb-4 text-sm md:text-md md:w-96 md:gap-4">
-            <div className = {`border-2 px-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+            <div className = {`border-2 px-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='podomoro' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('podomoro')}}
             >
                 podomoro
             </div>
-            <div className = {`border-2 py-2 px-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='medium' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+            <div className = {`border-2 py-2 px-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='short break' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('short break')}}
             >
                 short break 
             </div>
-            <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='long' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
+            <div className = {`border-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='long break' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('long break')}}
             >
                 long break

@@ -24,7 +24,7 @@ function App(){
     
     return (
     <div className={'bg-wrapper bg-no-repeat bg-center bg-fixed bg-cover ' + url}>
-      <div className = "bg-black h-screen w-full bg-opacity-20 flex flex-col items-center justify-center">
+      <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center">
 
         <Timer />
         <Todos /> 
