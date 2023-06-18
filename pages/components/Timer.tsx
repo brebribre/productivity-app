@@ -32,12 +32,6 @@ export default function Timer(){
         }
       }, [])
 
-    const playFinishSound = () => {
-        let audio = new Audio("/audios/finish.mp3");
-        if(typeof Audio !== "undefined"){
-            audio.play()
-        }
-    }
 
 
     const oneDigit = (num:Number) => {
@@ -98,7 +92,6 @@ export default function Timer(){
           }, 1000);
 
           if(allZero()){
-            playFinishSound()
             setIsActive(false);
           }
 
