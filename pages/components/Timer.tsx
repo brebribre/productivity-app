@@ -71,6 +71,7 @@ export default function Timer(){
             setSeconds(0);
             setIsActive(false);
         }else if(mode === 'short break'){
+           
             setMinutes(short);
             setSeconds(0);
             setIsActive(false);
@@ -128,7 +129,7 @@ export default function Timer(){
         </div>
 
         <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-3 md:my-4 md:text-9xl md:w-96 ">
-            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(pod)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
             <div className ="text-slate-100 font-bold text-center">:</div>
             <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
