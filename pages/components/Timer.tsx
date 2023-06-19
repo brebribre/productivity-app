@@ -128,9 +128,9 @@ export default function Timer(){
             </div>
         </div>
 
-        <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-12 md:my-4 md:text-9xl md:w-3/6 ">
+        <div className = "w-80 justify-center mx-auto text-8xl grid grid-cols-11 md:my-4 md:text-9xl md:w-3/6 ">
             <div className ="text-slate-100 font-bold font-orbitron text-right col-span-5">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
-            <div className ="text-slate-100 font-bold text-center col-span-2">:</div>
+            <div className ="text-slate-100 font-bold text-center col-span-1">:</div>
             <div className ="text-slate-100 font-bold font-orbitron text-left col-span-5">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
