@@ -5,7 +5,7 @@ import Option from './Option'
 
 export default function Nav(props:any){
     return (
-    <div className = "gap-2 grid grid-cols-3 ">
+    <div className = "grid grid-rows-3 gap-2 md:grid-cols-3 md:gap-2 ">
         <Option text = "sakura"  onClick = {() => props.setBg("sakura")} />
         <Option text = "sea" onClick = {() => props.setBg("sea")}/>
         <Option text = "forest" onClick = {() => props.setBg("forest")}/>

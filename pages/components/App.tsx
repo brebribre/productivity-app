@@ -73,7 +73,7 @@ function App(){
         <Title/>
         <Timer />
         <Todos /> 
-        <div className = "absolute top-5 right-5 hidden md:block" onClick = {() => toggleSettings(true)}>
+        <div className = "absolute top-5 right-5 " onClick = {() => toggleSettings(true)}>
           <Image src={'settings.svg'} className="hover:rotate-45 hover:scale-110 transform transition duration-300 md:w-10" alt="reset-button" width={30} height={30}/>
         </div>
         <Popup 
