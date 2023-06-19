@@ -66,7 +66,7 @@ function App(){
     return (
     <div className={'bg-wrapper bg-no-repeat bg-center bg-fixed bg-cover ' + url}>
       <Head>
-        <title>doMore.io | Aesthetic Podomoro Timer</title>
+        <title>podoMore | Aesthetic Podomoro Timer</title>
         <link rel="shortcut icon" href="restart.svg" />
       </Head>
       <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center pt-20">
