@@ -109,8 +109,8 @@ export default function Timer(){
 
     
     return (
-    <div className = "">
-        <div className = "w-80 mb-8 mt-12 gap-2 mx-auto grid grid-cols-3 text-center justify-center md:mb-4 text-sm md:text-lg md:w-full md:gap-2">
+    <div className = "md:w-1/2">
+        <div className = "w-80 mb-8 mt-12 gap-2 mx-auto grid grid-cols-3 text-center justify-center md:mb-4 text-sm md:text-lg md:w-1/2 md:gap-2">
             <div className = {`border-2 px-2 py-2 rounded-3xl font-semibold transform transition duration-200 hover:bg-white hover:text-black ${mode==='podomoro' ? "bg-white text-black bg-opacity-60 border-0" : "bg-transparent"}`} 
                 onClick = {() => {changeMode('podomoro')}}
             >
@@ -128,10 +128,10 @@ export default function Timer(){
             </div>
         </div>
 
-        <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-3 md:my-4 md:text-9xl md:w-96 ">
-            <div className ="text-slate-100 font-bold font-orbitron text-right">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
-            <div className ="text-slate-100 font-bold text-center">:</div>
-            <div className ="text-slate-100 font-bold font-orbitron">{oneDigit(seconds)? '0'+seconds : seconds}</div>
+        <div className = "w-80 justify-center mx-auto text-7xl grid grid-cols-12 md:my-4 md:text-9xl md:w-3/6 ">
+            <div className ="text-slate-100 font-bold font-orbitron text-right col-span-5">{oneDigit(minutes)? '0'+ minutes : minutes}</div>
+            <div className ="text-slate-100 font-bold text-center col-span-2">:</div>
+            <div className ="text-slate-100 font-bold font-orbitron text-left col-span-5">{oneDigit(seconds)? '0'+seconds : seconds}</div>
         </div>
 
         <Controls 
