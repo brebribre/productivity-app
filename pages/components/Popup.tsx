@@ -95,8 +95,7 @@ export default function Popup(props:any){
                 <div className = "col-span-4 z-20">
                     <div className = "grid grid-rows-3 gap-4 mt-5 ml-8 mr-3 py-2">
                         <p className = "pb-2 font-bold border-b-2">General</p>
-                        <p className = "pb-2">Timers</p>
-                        <p className = "pb-2">Audio</p>
+               
                     </div>
                 </div>
 
@@ -106,10 +105,15 @@ export default function Popup(props:any){
                     <Nav setBg = {themeChange}/>
 
                     <p className = "pt-6 pb-2 font-bold">Timer </p>
-                    <div className = "grid grid-cols-3 gap-2">
-                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('podomoro', e.target.value)}></input>
+                    <div className = "grid grid-cols-3 gap-2">       
+                        <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">pod</p>
+                        <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">short </p>
+                        <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">long </p>
+                    </div>
+                    <div className = "grid grid-cols-3 gap-2">       
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('podomoro', e.target.value)}></input>
                         <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('short', e.target.value)}></input>
-                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('long', e.target.value)}></input>            
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('long', e.target.value)}></input>            
                     </div>
                 </div>
                 <button className = "absolute top-5 right-5" onClick = {() => props.setIsOpen(false)}>X</button>
