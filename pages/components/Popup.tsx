@@ -87,7 +87,7 @@ export default function Popup(props:any){
 
 
     return (
-        <div className = {`absolute bg-gray-900 rounded-3xl mx-2 my-auto h-1/2 sm:h-2/3 md:w-2/3 md:h-1/2 xl:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
+        <div className = {`absolute bg-gray-900 rounded-3xl mx-2 h-2/3 sm:h-2/3 md:w-2/3 md:h-1/2 xl:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
             <div className="bg-wrapper-2 bg-black opacity-50">
 
             </div>
