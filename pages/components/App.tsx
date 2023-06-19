@@ -69,7 +69,7 @@ function App(){
         <title>doMore.io | Aesthetic Podomoro Timer</title>
         <link rel="shortcut icon" href="restart.svg" />
       </Head>
-      <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center">
+      <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center pt-20">
         <Title/>
         <Timer />
         <Todos /> 
