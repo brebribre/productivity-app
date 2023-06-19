@@ -10,7 +10,7 @@ export default function Timer(){
     const [mode, setMode] = useState("podomoro");
     
     const [pod, setPod] = useState(25);
-    const [short, setShort] = useState(15);
+    const [short, setShort] = useState(5);
     const [long, setLong] = useState(10);
 
     
