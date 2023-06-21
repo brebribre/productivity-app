@@ -9,6 +9,7 @@ import Title from './Title'
 import Image from 'next/image'
 import Player from './Player'
 
+
 function App(){
     const [isOpen, setIsOpen] = useState(false);
     const [bg, setBg] = useState("sakura");

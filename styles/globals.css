@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
 .bg-wrapper{
   position: fixed;
     top: 0;
@@ -43,6 +45,10 @@
 
 .font-orbitron{
   font-family: 'MuseoModerno', cursive;
+}
+
+.font-title{
+  font-family: 'DM Serif Display', serif;
 }
 
 :root {
