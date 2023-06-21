@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Song(props){
+export default function Song(props:any){
     return (
         <iframe
             style={{ borderRadius: 12 }}
