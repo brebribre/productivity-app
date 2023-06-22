@@ -4,6 +4,8 @@ import Controls from './Controls'
 
 
 export default function Timer(){
+    const [audio, setAudio] = useState<any>(null);
+    
     const [minutes, setMinutes] = useState(25);
     const [seconds, setSeconds] = useState(0);
     const [isActive, setIsActive] = useState(false);
@@ -13,8 +15,10 @@ export default function Timer(){
     const [short, setShort] = useState(5);
     const [long, setLong] = useState(10);
 
-    
+
     useEffect(() => {
+        setAudio(new Audio("/audios/finish.mp3"))
+
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
@@ -93,6 +97,7 @@ export default function Timer(){
 
           if(allZero()){
             setIsActive(false);
+            audio.play()
           }
 
           if(seconds === -1){

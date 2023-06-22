@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from './Todo'
 import Input from './Input';
 import { useEffect, useState } from "react"
+import useSound from 'use-sound';
 
 interface Todos {
     id: number;
@@ -10,7 +11,7 @@ interface Todos {
 }
 
 export default function Todos(){
-    let [todos, setTodos] = useState<Todos[]>([]);
+    const [todos, setTodos] = useState<Todos[]>([]);
 
     
     useEffect(() => {
@@ -23,16 +24,14 @@ export default function Todos(){
         }else{
             setTodos([])
         }
-      }, [])
+    }, [])
 
     const addToLocalStorage =  (todos:Todos[]) => {
         localStorage.setItem('todos', JSON.stringify(todos));
-      
     }
 
     const appendToLocalStorage =  (todos:Todos[]) => {
         localStorage.setItem('todos', JSON.stringify(todos));
-      
     }
 
     const addTodos =  (item:string) => {
@@ -43,8 +42,6 @@ export default function Todos(){
                 completed: false
             }
             setTodos([...todos, newItem]);
-            //store todos locally
-           
             let tmp = todos;
             tmp = [...todos, newItem]
 
@@ -57,10 +54,13 @@ export default function Todos(){
             if(item.id === id){
                 item.completed = !item.completed  
             }
+    
             return item;
         });
+        
         setTodos(tmp);
         addToLocalStorage(tmp);
+
     }
 
     const deleteTodo =  (id:number) => {
@@ -89,6 +89,7 @@ export default function Todos(){
                     delFunc = {deleteTodo}
                     checkFunc = {checkTodo}
                     initialCheck = {obj.completed}
+        
                 />
                 )
             }  
