@@ -10,73 +10,73 @@ interface Settings {
 }
 
 export default function Popup(props:any){
-    let defaultSetting = {
-        podomoro: 25,
-        short: 5,
-        long: 10,
-        theme: "sakura"
+    const defaultSetting = {
+        podomoro:15,
+        short:10,
+        long:5,
+        theme:"sakura"
     }
-
     useEffect(() => {
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
         if(value !== "err"){
-            defaultSetting.theme = JSON.parse(value).theme;
+            setSetting(JSON.parse(value));
         }else{
           console.log("empty")
+       
         }
     }, [])
 
-    const [setting, setSetting] = useState<Settings>(defaultSetting)
+    const [setting, setSetting] = useState<Settings>(defaultSetting);
+    const [displayWarning, setDisplayWarning] = useState(false);
 
     const getFromLocalStorage = () => {
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
         if(value !== "err"){
-      
-            let themeDef = JSON.parse(value).theme;
-            props.setBg(themeDef);  
-            return value;
-           
+            return value;    
         }else{
           console.log("empty")
         }
       }
 
-      
-
-
     const addToLocalStorage =  (settings:Settings) => {
         localStorage.setItem('settings', JSON.stringify(settings));
-        getFromLocalStorage();
+        console.log(getFromLocalStorage())
     }
 
     
-    const timerChange = (type:string, value:any) => {
-        const tmp = setting;
-        console.log(tmp)
-        if(type === 'podomoro'){
-            tmp.podomoro = Number(value)
-            
-        }
-        else if(type === 'short'){
-            tmp.short = Number(value)
-        }
-        else if(type === 'long'){
-            tmp.long = Number(value)
-        }
+    const timerChange = (type:string, value:number) => {
+        if(!isNaN(value) && Number(value) <= 120 && Number(value) >= 0){
+            const tmp = setting;
+            console.log(tmp)
+            if(type === 'podomoro'){
+                tmp.podomoro = Number(value)
+                
+            }
+            else if(type === 'short'){
+                tmp.short = Number(value)
+            }
+            else if(type === 'long'){
+                tmp.long = Number(value)
+            }
 
-        setSetting(tmp);
-       
+            setSetting(tmp);
+            setDisplayWarning(false)
+        }else{
+            console.log("invalid number")
+            setDisplayWarning(true)
+        }
         
     }
 
     const themeChange = (theme:string) => {
         const tmp = setting;
         tmp.theme = theme;
-        setSetting(tmp);
+        console.log("tmp:" + tmp)
+        addToLocalStorage(setting)
     }
 
     const resetSettings = () => {
@@ -105,25 +105,32 @@ export default function Popup(props:any){
 
                 <div className = "col-span-8 mt-5 mx-8 z-20 py-2">
                     <p className = "pb-2 font-bold">Select theme</p>
-                    
-                    <Nav setBg = {themeChange}/>
+                   
+                    <select name="Choose Sound" className = "border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
+                        <option value="sakura">Sakura</option>
+                        <option value="sea">Sea</option>
+                        <option value="forest">Forest</option>
+                    </select>
+                  
 
-                    <p className = "pb-2 font-bold">Timer </p>
+                    <p className = "pb-2 font-bold mt-5">Timer </p>
                     <div className = "grid grid-cols-3 gap-2">       
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">pod</p>
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">short </p>
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">long </p>
                     </div>
                     <div className = "grid grid-cols-3 gap-2">       
-                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('podomoro', e.target.value)}></input>
-                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('short', e.target.value)}></input>
-                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" type="number" max="60" onChange = {e => timerChange('long', e.target.value)}></input>            
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('podomoro', Number(e.target.value))}></input>
+                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('short', Number(e.target.value))}></input>
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('long', Number(e.target.value))}></input>     
+                               
                     </div>
+                    <p className = {`text-red-600 text-sm mt-1  ${displayWarning ? "block" : "hidden"}`}>Invalid number! Must be between 0 and 120.</p>
                 </div>
                 <button className = "absolute top-5 right-5" onClick = {() => props.setIsOpen(false)}>X</button>
-                <div className = "absolute gap-2 bottom-10 right-10 font-slate-100 font-bold flex">
+                <div className = "absolute gap-2 bottom-10 right-5 font-slate-100 font-bold flex">
                     <Option text = "Reset" onClick = {resetSettings} />
-                    <Option text = "Save Changes" onClick = {closePopup} />
+                    <Option text = "Save Changes" onClick = {closePopup} valid = {displayWarning}/>
                 </div>
             </div>
         </div>
