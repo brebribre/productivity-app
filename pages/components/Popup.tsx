@@ -13,27 +13,43 @@ interface Settings {
 }
 
 export default function Popup(props:any){
-    const defaultSetting = {
+    let defaultSetting = {
         podomoro:15,
         short:10,
         long:5,
         theme:"sakura"
     }
+    
     const [setting, setSetting] = useState<Settings>(defaultSetting);
     const [displayWarning, setDisplayWarning] = useState(false);
     const [displayed, setDisplayed] = useState('general');
+    const [selected, setSelected] = useState(setting.theme)
 
     useEffect(() => {
         let value;
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
         if(value !== "err"){
-            setSetting(JSON.parse(value));
+ 
+            let p = Number(JSON.parse(value).podomoro);
+            let s = Number(JSON.parse(value).short);
+            let l = Number(JSON.parse(value).long);
+            let t = JSON.parse(value).theme
+            value = {
+                podomoro: p,
+                short: s,
+                long: l,
+                theme: t
+            }
+            setSelected(value.theme)
+            setSetting(value)
+            defaultSetting = value
+
+
         }else{
-          console.log("empty")
-       
+            console.log("empty")
         }
-    }, [])
+      }, [])
 
     
 
@@ -42,22 +58,21 @@ export default function Popup(props:any){
         // Get the value from local storage if it exists
         value = localStorage.getItem("settings") || "err"
         if(value !== "err"){
-            return value;    
+            return JSON.parse(value);    
         }else{
-          console.log("empty")
+            console.log("empty")
+            return "err"
         }
       }
 
     const addToLocalStorage =  (settings:Settings) => {
         localStorage.setItem('settings', JSON.stringify(settings));
-        console.log(getFromLocalStorage())
     }
 
     
     const timerChange = (type:string, value:number) => {
         if(!isNaN(value) && Number(value) <= 120 && Number(value) >= 0){
             const tmp = setting;
-            console.log(tmp)
             if(type === 'podomoro'){
                 tmp.podomoro = Number(value)
                 
@@ -78,11 +93,13 @@ export default function Popup(props:any){
         
     }
 
+
     const themeChange = (theme:string) => {
+        setSelected(theme)
         const tmp = setting;
         tmp.theme = theme;
-        console.log("tmp:" + tmp)
-        addToLocalStorage(setting)
+        setSetting(tmp)
+        console.log(setting.theme)
     }
 
     const resetSettings = () => {
@@ -113,7 +130,7 @@ export default function Popup(props:any){
                 <div className = {`col-span-8 mt-5 mx-8 z-20 py-2 ${displayed==='general' ? "block" : "hidden"}`}>
                     <p className = "pb-2 font-bold">Select theme</p>
                    
-                    <select name="Choose Sound" className = "border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
+                    <select name="Choose theme" value={selected} className = "border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
                         <option value="sakura">Sakura</option>
                         <option value="sea">Sea</option>
                         <option value="forest">Forest</option>

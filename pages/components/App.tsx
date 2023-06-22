@@ -32,7 +32,6 @@ function App(){
       // Get the value from local storage if it exists
       value = localStorage.getItem("settings") || "err"
       if(value !== "err"){
-          console.log(value)
           let theme = JSON.parse(value).theme;
           setBg(theme);  
           setUrl(getUrl(theme))
