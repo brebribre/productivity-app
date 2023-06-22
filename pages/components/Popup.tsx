@@ -1,7 +1,10 @@
 import React from 'react'
 import Nav from './Nav'
 import Option from './Option'
+import About from './About'
 import { useState, useEffect } from 'react';
+
+
 interface Settings {
     podomoro: number;
     short: number;
@@ -16,6 +19,10 @@ export default function Popup(props:any){
         long:5,
         theme:"sakura"
     }
+    const [setting, setSetting] = useState<Settings>(defaultSetting);
+    const [displayWarning, setDisplayWarning] = useState(false);
+    const [displayed, setDisplayed] = useState('general');
+
     useEffect(() => {
         let value;
         // Get the value from local storage if it exists
@@ -28,8 +35,7 @@ export default function Popup(props:any){
         }
     }, [])
 
-    const [setting, setSetting] = useState<Settings>(defaultSetting);
-    const [displayWarning, setDisplayWarning] = useState(false);
+    
 
     const getFromLocalStorage = () => {
         let value;
@@ -93,17 +99,18 @@ export default function Popup(props:any){
 
     return (
         <div className = {`absolute top-40 bg-gray-900 rounded-3xl h-2/3 w-80 sm:w-2/3 md:h-2/3 lg:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
-            <div className="bg-wrapper-2 bg-black opacity-50">
+            <div className="bg-wrapper-2 bg-black opacity-50 ">
             </div>
             <div className = "grid grid-cols-12">
                 <div className = "col-span-4 z-20">
                     <div className = "grid grid-rows-3 gap-4 mt-5 ml-8 mr-3 py-2">
-                        <p className = "pb-2 font-bold border-b-2">General</p>
-               
+                        <button className ={`text-left pb-2 font-bold ${displayed==='general' ? "border-b" : ""}`} onClick={()=>setDisplayed('general')}>General</button>
+                        <button className = {`text-left pb-2 font-bold ${displayed==='about' ? "border-b" : ""}`} onClick={()=>setDisplayed('about')}>About</button>
                     </div>
                 </div>
 
-                <div className = "col-span-8 mt-5 mx-8 z-20 py-2">
+                {/* GENERAL SECTION */}
+                <div className = {`col-span-8 mt-5 mx-8 z-20 py-2 ${displayed==='general' ? "block" : "hidden"}`}>
                     <p className = "pb-2 font-bold">Select theme</p>
                    
                     <select name="Choose Sound" className = "border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
@@ -111,7 +118,7 @@ export default function Popup(props:any){
                         <option value="sea">Sea</option>
                         <option value="forest">Forest</option>
                     </select>
-                  
+                   
 
                     <p className = "pb-2 font-bold mt-5">Timer </p>
                     <div className = "grid grid-cols-3 gap-2">       
@@ -126,12 +133,22 @@ export default function Popup(props:any){
                                
                     </div>
                     <p className = {`text-red-600 text-sm mt-1  ${displayWarning ? "block" : "hidden"}`}>Invalid number! Must be between 0 and 120.</p>
+                    <div className = "absolute gap-2 bottom-10 right-5 font-slate-100 font-bold flex">
+                        <Option text = "Reset" onClick = {resetSettings} />
+                        <Option text = "Save Changes" onClick = {closePopup} valid = {displayWarning}/>  
+                    </div>
                 </div>
+
+                {/*ABOUT SECTION*/}
+                <div className = {`col-span-8 mt-5 mx-8 z-20 py-2 ${displayed==='about' ? "block" : "hidden"}`}>
+                    <About />
+                    
+                   
+                </div>
+            
+
                 <button className = "absolute top-5 right-5" onClick = {() => props.setIsOpen(false)}>X</button>
-                <div className = "absolute gap-2 bottom-10 right-5 font-slate-100 font-bold flex">
-                    <Option text = "Reset" onClick = {resetSettings} />
-                    <Option text = "Save Changes" onClick = {closePopup} valid = {displayWarning}/>
-                </div>
+                
             </div>
         </div>
     )

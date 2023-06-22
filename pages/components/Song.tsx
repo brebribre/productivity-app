@@ -9,6 +9,7 @@ export default function Song(props:any){
             height={100}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
             loading="lazy"
+            
         />
     )
 }
