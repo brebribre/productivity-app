@@ -14,7 +14,7 @@ interface Settings {
 
 export default function Popup(props:any){
     let defaultSetting = {
-        podomoro:15,
+        podomoro:25,
         short:5,
         long:10,
         theme:"sakura"
