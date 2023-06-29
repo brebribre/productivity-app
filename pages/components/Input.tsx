@@ -16,7 +16,7 @@ export default function Input(props:any){
                     setTodo(e.target.value)
                 }} 
                 placeholder = "Your todo here" 
-                className = "flex-auto w-64 pl-2 tracking-wide py-2 bg-transparent outline-0 "/>
+                className = "flex-auto w-64 pl-2 border-0  tracking-wide font-semibold lg:text-2xl py-2 bg-transparent outline-0 text-white"/>
 
                 <button className = "flex-auto py-2 font-bold text-2xl transform transition duration-200 hover:opacity-80 hover:scale-150" onClick = {()=>{
                     setTodo("")
