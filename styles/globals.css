@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
 
 .bg-wrapper{
   position: fixed;
@@ -48,7 +50,8 @@
 }
 
 .font-title{
-  font-family: 'DM Serif Display', serif;
+  font-family: 'Fraunces', serif;
+  
 }
 
 :root {

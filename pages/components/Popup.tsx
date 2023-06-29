@@ -17,7 +17,7 @@ export default function Popup(props:any){
         podomoro:25,
         short:5,
         long:10,
-        theme:"sakura"
+        theme:"study"
     }
     
     const [setting, setSetting] = useState<Settings>(defaultSetting);
@@ -134,6 +134,7 @@ export default function Popup(props:any){
                         <option value="sakura">Sakura</option>
                         <option value="sea">Sea</option>
                         <option value="forest">Forest</option>
+                        <option value="study">Study</option>
                     </select>
                    
 

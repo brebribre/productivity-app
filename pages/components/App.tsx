@@ -13,7 +13,7 @@ import Player from './Player'
 function App(){
     const [isOpen, setIsOpen] = useState(false);
     const [bg, setBg] = useState("sakura");
-    const [url, setUrl] = useState("bg-[url('/images/bg1.jpeg')]")
+    const [url, setUrl] = useState("bg-[url('/images/study.jpg')]")
 
     const getUrl = (bg:string) => {
       if(bg === "sakura"){
@@ -23,7 +23,7 @@ function App(){
       }else if(bg === "forest"){
         return "bg-[url('/images/forest.jpg')]"
       }else{
-        return "bg-[url('/images/bg1.jpeg')]"
+        return "bg-[url('/images/study.jpg')]"
       }
     }
 
@@ -71,7 +71,6 @@ function App(){
         <link rel="shortcut icon" href="restart.svg" />
       </Head>
       <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center pt-20">
-  
         <Timer />
         <Todos /> 
         <div className = "absolute top-5 right-5 md:top-10 md:right-10 " onClick = {() => toggleSettings(true)}>
