@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Todos from './Todos'
 import Popup from './Popup'
 import Head from 'next/head'
+import Title from './Title'
 import Image from 'next/image'
 import Player from './Player'
 
@@ -66,6 +67,7 @@ function App(){
         <link rel="shortcut icon" href="restart.svg" />
       </Head>
       <div className = "bg-black h-screen w-full bg-opacity-10 flex flex-col items-center justify-center pt-20">
+        <Title/>
         <Timer />
         <Todos /> 
         <div className = "absolute top-5 right-5 md:top-10 md:right-10 " onClick = {() => toggleSettings(true)}>
