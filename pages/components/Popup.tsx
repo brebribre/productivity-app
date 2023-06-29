@@ -21,6 +21,10 @@ export default function Popup(props:any){
     }
     
     const [setting, setSetting] = useState<Settings>(defaultSetting);
+
+    const [timerChanged, setTimerChanged] = useState(false);
+    const [themeChanged, setThemeChanged] = useState(false);
+
     const [displayWarning, setDisplayWarning] = useState(false);
     const [displayed, setDisplayed] = useState('general');
     const [selected, setSelected] = useState(setting.theme)
@@ -53,29 +57,21 @@ export default function Popup(props:any){
 
     
 
-    const getFromLocalStorage = () => {
-        let value;
-        // Get the value from local storage if it exists
-        value = localStorage.getItem("settings") || "err"
-        if(value !== "err"){
-            return JSON.parse(value);    
-        }else{
-            console.log("empty")
-            return "err"
-        }
-      }
-
     const addToLocalStorage =  (settings:Settings) => {
         localStorage.setItem('settings', JSON.stringify(settings));
     }
 
     
-    const timerChange = (type:string, value:number) => {
-        if(!isNaN(value) && Number(value) <= 120 && Number(value) >= 0){
-            const tmp = setting;
+    const timerChange = (type:string, value:string) => {
+        let tmp = setting;
+        if(value === ""){
+            tmp = defaultSetting;
+            setSetting(tmp)
+            setTimerChanged(false)
+        }else if(!isNaN(Number(value)) && Number(value) <= 120 && Number(value) >= 0){
+            
             if(type === 'podomoro'){
                 tmp.podomoro = Number(value)
-                
             }
             else if(type === 'short'){
                 tmp.short = Number(value)
@@ -83,8 +79,9 @@ export default function Popup(props:any){
             else if(type === 'long'){
                 tmp.long = Number(value)
             }
-
-            setSetting(tmp);
+            setTimerChanged(true)
+            setSetting(tmp)
+            console.log(setting)
             setDisplayWarning(false)
         }else{
             console.log("invalid number")
@@ -93,13 +90,13 @@ export default function Popup(props:any){
         
     }
 
-
     const themeChange = (theme:string) => {
         setSelected(theme)
         const tmp = setting;
         tmp.theme = theme;
         setSetting(tmp)
-        console.log(setting.theme)
+        setThemeChanged(true)
+        console.log(setting)
     }
 
     const resetSettings = () => {
@@ -109,13 +106,16 @@ export default function Popup(props:any){
 
     const closePopup = () => {
         props.setIsOpen(false);
-        addToLocalStorage(setting)
+        if(timerChanged || themeChanged){
+            addToLocalStorage(setting)
+        }
+        
         window.location.reload();
     }
 
 
     return (
-        <div className = {`popup absolute top-40 bg-gray-900 rounded-3xl h-2/3 w-80 sm:w-2/3 md:h-2/3 lg:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
+        <div className = {` absolute top-40 bg-gray-900 rounded-3xl h-2/3 w-80 sm:w-2/3 md:h-2/3 lg:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
             <div className="bg-wrapper-2 bg-black opacity-50 ">
             </div>
             <div className = "grid grid-cols-12">
@@ -145,9 +145,9 @@ export default function Popup(props:any){
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">long </p>
                     </div>
                     <div className = "grid grid-cols-3 gap-2">       
-                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('podomoro', Number(e.target.value))}></input>
-                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('short', Number(e.target.value))}></input>
-                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('long', Number(e.target.value))}></input>     
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number" onChange = {e => timerChange('podomoro', e.target.value)}></input>
+                        <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('short', e.target.value)}></input>
+                        <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('long', e.target.value)}></input>     
                                
                     </div>
                     <p className = {`text-red-600 text-sm mt-1  ${displayWarning ? "block" : "hidden"}`}>Invalid number! Must be between 0 and 120.</p>
