@@ -5,7 +5,7 @@ export default function Song(props:any){
         <iframe
             style={{ borderRadius: 12 }}
             src={props.src}
-            width={320}
+            width={300}
             height={100}
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
             loading="lazy"

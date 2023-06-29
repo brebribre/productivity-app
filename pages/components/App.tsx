@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import Todos from './Todos'
 import Popup from './Popup'
 import Head from 'next/head'
-import Title from './Title'
 import Image from 'next/image'
 import Player from './Player'
 
@@ -27,7 +26,7 @@ function App(){
       }
     }
 
-    const getFromLocalStorage = () => {
+    const setFromLocalStorage = () => {
       let value;
       // Get the value from local storage if it exists
       value = localStorage.getItem("settings") || "err"
@@ -35,14 +34,13 @@ function App(){
           let theme = JSON.parse(value).theme;
           setBg(theme);  
           setUrl(getUrl(theme))
-          
       }else{
         console.log("empty")
       }
     }
 
     useEffect(() => {
-      getFromLocalStorage();
+      setFromLocalStorage();
     }, [])
 
     const changeBg = (bg:string) => {
@@ -54,11 +52,8 @@ function App(){
       }else if(bg === "forest"){
         setUrl("bg-[url('/images/forest.jpg')]")
       }
-
       setBg(bg);
     }
-
-    
 
     const toggleSettings = (visible:boolean) => {
       setIsOpen(visible);
