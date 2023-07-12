@@ -16,7 +16,7 @@ export default function Player(){
     return (
         <div className = "absolute bottom-5 left-10 hidden lg:block ">
   
-            <select className = "bg-transparent border-2 w-20 px-2 mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black" name="Choose Sound"  onChange = {e => changeSong(Number(e.target.value))}>
+            <select className = "text-slate-200 bg-transparent border-2 w-20 px-2 mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black" name="Choose Sound"  onChange = {e => changeSong(Number(e.target.value))}>
                 <option value={2}>Lo-Fi</option>
                 <option value={1}>Rain</option>
             </select>

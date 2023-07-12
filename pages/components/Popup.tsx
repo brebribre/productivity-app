@@ -115,22 +115,22 @@ export default function Popup(props:any){
 
 
     return (
-        <div className = {` absolute top-40 bg-gray-900 rounded-3xl h-2/3 w-80 sm:w-2/3 md:h-2/3 lg:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
+        <div className = {`absolute top-40 bg-gray-900 rounded-3xl h-2/3 w-80 sm:w-2/3 md:h-2/3 lg:w-1/3 ${props.isOpen ? "block" : "hidden"}`}>
             <div className="bg-wrapper-2 bg-black opacity-50 ">
             </div>
             <div className = "grid grid-cols-12">
                 <div className = "col-span-4 z-20">
                     <div className = "grid grid-rows-3 gap-4 mt-5 ml-8 mr-3 py-2">
-                        <button className ={`text-left pb-2 font-bold ${displayed==='general' ? "border-b" : ""}`} onClick={()=>setDisplayed('general')}>General</button>
-                        <button className = {`text-left pb-2 font-bold ${displayed==='about' ? "border-b" : ""}`} onClick={()=>setDisplayed('about')}>About</button>
+                        <button className ={`text-slate-200 text-left pb-2 font-bold ${displayed==='general' ? "border-b" : ""}`} onClick={()=>setDisplayed('general')}>General</button>
+                        <button className = {`text-slate-200 text-left pb-2 font-bold ${displayed==='about' ? "border-b" : ""}`} onClick={()=>setDisplayed('about')}>About</button>
                     </div>
                 </div>
 
                 {/* GENERAL SECTION */}
                 <div className = {`col-span-8 mt-5 mx-8 z-20 py-2 ${displayed==='general' ? "block" : "hidden"}`}>
-                    <p className = "pb-2 font-bold">Select theme</p>
+                    <p className = "text-slate-200 pb-2 font-bold">Select theme</p>
                    
-                    <select name="Choose theme" value={selected} className = "border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
+                    <select name="Choose theme" value={selected} className = "text-slate-200 border-2 px-2 text-center mb-2 text-sm py-1 rounded-2xl font-semibold transform transition duration-200 hover:bg-white hover:text-black bg-transparent" onChange = {e => themeChange(e.target.value)}>
                         <option value="sakura">Sakura</option>
                         <option value="sea">Sea</option>
                         <option value="forest">Forest</option>
@@ -138,13 +138,13 @@ export default function Popup(props:any){
                     </select>
                    
 
-                    <p className = "pb-2 font-bold mt-5">Timer </p>
+                    <p className = "pb-2 font-bold mt-5 text-slate-200 ">Timer </p>
                     <div className = "grid grid-cols-3 gap-2">       
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">pod</p>
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">short </p>
                         <p className = "mb-1 ml-1 text-gray-400 font-light text-sm">long </p>
                     </div>
-                    <div className = "grid grid-cols-3 gap-2">       
+                    <div className = "grid grid-cols-3 gap-2 text-slate-200 ">       
                         <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number" onChange = {e => timerChange('podomoro', e.target.value)}></input>
                         <input className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('short', e.target.value)}></input>
                         <input  className = "rounded-md bg-gray-800 px-2 py-1 font-bold" maxLength ={2} type="number"  onChange = {e => timerChange('long', e.target.value)}></input>     
@@ -165,7 +165,7 @@ export default function Popup(props:any){
                 </div>
             
 
-                <button className = "absolute top-5 right-5" onClick = {() => props.setIsOpen(false)}>X</button>
+                <button className = "text-slate-200 absolute top-5 right-5" onClick = {() => props.setIsOpen(false)}>X</button>
                 
             </div>
         </div>
